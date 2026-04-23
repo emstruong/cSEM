@@ -124,13 +124,15 @@ plot.cSEMNonlinearEffects <- function(
         ))%>% plotly::hide_colorbar()
     
     # save current viewer settings. Set to null that figure is opened in browser
-    op=options()
-    viewer_old <- op$viewer
+    # op=options()
+    # viewer_old <- op$viewer
+    viewer_old <- getOption("viewer")
+    on.exit(options(viewer = viewer_old), add = TRUE)
     options(viewer = NULL)
     # Create plot
     return(plot1)
     # Restore viewer settings
-    options(viewer = viewer_old)
+    # options(viewer = viewer_old)
   }
   
   if(.plot_package == 'persp'){
